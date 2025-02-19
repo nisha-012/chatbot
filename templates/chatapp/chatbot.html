@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+</head>
+<body>
+    <h2>Select a Question:</h2>
+    <form method="GET">
+        <select name="question_id" onchange="this.form.submit()">
+            <option value="">--Choose a question--</option>
+            {% for q in questions %}
+                <option value="{{ q.id }}" {% if q.id|stringformat:"i" == request.GET.question_id %}selected{% endif %}>
+                    {{ q.question }}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+
+    {% if answer %}
+        <h3>Answer:</h3>
+        <p>{{ answer }}</p>
+    {% endif %}
+</body>
+</html>

@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import chatbot_view
+from .views import HomeView, ChatView, AskQuestionView
 
 urlpatterns = [
-    path('', chatbot_view, name='chatbot'),  # Main chatbot view
+    path('', HomeView, name='home'),
+    path("chatbot/", ChatView, name="chatbot"),  # Add this if 'chatbot' is required
+    path("ask-query/", AskQuestionView, name="ask_query"),
 ]

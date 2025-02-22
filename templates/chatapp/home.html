@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Welcome Section -->
+<div class="container">
+    <div class="welcome-section text-center p-5 bg-primary text-white rounded">
+        <h1>Welcome to CUH Chatbot</h1>
+        <p>Your virtual assistant for all queries related to Central University of Haryana.</p>
+    </div>
+</div>
+
+<!-- FAQ Section -->
+<div class="container mt-4">
+    <div class="faq-section p-4 bg-white rounded shadow">
+        <h2 class="text-center">Popular Questions</h2>
+        <div class="list-group">
+            <a href="/chat?q=1" class="list-group-item list-group-item-action">📌 How to apply for admission?</a>
+            <a href="/chat?q=2" class="list-group-item list-group-item-action">📌 What are the available courses?</a>
+            <a href="/chat?q=3" class="list-group-item list-group-item-action">📌 How to check exam results?</a>
+            <a href="/chat?q=4" class="list-group-item list-group-item-action">📌 What is the fee structure?</a>
+        </div>
+        <div class="text-center mt-3">
+            <a href="/chat" class="btn btn-primary">See More Questions</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

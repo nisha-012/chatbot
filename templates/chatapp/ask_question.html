@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Ask Your Question</h2>
+    <p class="text-center">Your question will be forwarded to the respective department.</p>
+    
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label>Name</label>
+            {{ form.name }}
+        </div>
+        <div class="mb-3">
+            <label>Email</label>
+            {{ form.email }}
+        </div>
+        <div class="mb-3">
+            <label>Department</label>
+            {{ form.department }}
+        </div>
+        <div class="mb-3">
+            <label>Your Question</label>
+            {{ form.question }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success mt-3">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUH Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .navbar {
+            background-color: #002147;
+        }
+        .navbar-brand img {
+            height: 50px;
+        }
+        .nav-link {
+            color: white !important;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background: #004080;
+            padding: 10px 0;
+        }
+        .tabs a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .tabs a:hover {
+            background: #0056b3;
+            border-radius: 5px;
+        }
+        .footer {
+            background: #002147;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="data:image/jpeg;base64,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" alt="CUH Logo"> CUH Chatbot
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/chat">Chat with Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact Info</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Tabs -->
+    <nav class="nav js-nav">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <a href="{% url 'home' %}" class="nav__link nav__link_active" data-transform="0">Home</a>
+            </li>
+            <li class="nav__item">
+                <a href="{% url 'chatbot' %}" class="nav__link" data-transform="100">Chat With Us</a>
+            </li>
+            <li class="nav__item">
+                <a href="{% url 'ask_query' %}" class="nav__link" data-transform="200">Ask Your Own Query</a>
+            </li>
+        </ul>
+        <div class="nav__slider">
+            <div class="nav__slider-rect"></div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2025 Central University of Haryana | All Rights Reserved
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    {% load static %}
+    <script src="{% static 'js/base.js' %}"></script>
+
+</body>
+</html>

@@ -1,27 +1,44 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - CUH Chatbot{% endblock %}
 
 {% block content %}
-<!-- Welcome Section -->
 <div class="container">
-    <div class="welcome-section text-center p-5 bg-primary text-white rounded">
+    
+    <!-- Introduction Section -->
+    <section class="intro">
         <h1>Welcome to CUH Chatbot</h1>
-        <p>Your virtual assistant for all queries related to Central University of Haryana.</p>
-    </div>
+        <p>Explore the CUH Chatbot for instant answers to your queries. Navigate through predefined topics, ask questions, and get relevant PDF resources.</p>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+            {% for question in faq_questions %}
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleAnswer({{ question.id }})">{{ question.question_text }}</button>
+                    <div class="faq-answer" id="answer-{{ question.id }}" style="display: none;">
+                        <p>{{ question.answer_text }}</p>
+                        {% if question.pdf_link %}
+                            <a href="{{ question.pdf_link }}" target="_blank">View PDF</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% empty %}
+                <p>No FAQs available at the moment.</p>
+            {% endfor %}
+        </div>
+    </section>
+
 </div>
 
-<!-- FAQ Section -->
-<div class="container mt-4">
-    <div class="faq-section p-4 bg-white rounded shadow">
-        <h2 class="text-center">Popular Questions</h2>
-        <div class="list-group">
-            <a href="/chat?q=1" class="list-group-item list-group-item-action">📌 How to apply for admission?</a>
-            <a href="/chat?q=2" class="list-group-item list-group-item-action">📌 What are the available courses?</a>
-            <a href="/chat?q=3" class="list-group-item list-group-item-action">📌 How to check exam results?</a>
-            <a href="/chat?q=4" class="list-group-item list-group-item-action">📌 What is the fee structure?</a>
-        </div>
-        <div class="text-center mt-3">
-            <a href="/chat" class="btn btn-primary">See More Questions</a>
-        </div>
-    </div>
-</div>
+<script>
+    function toggleAnswer(id) {
+        var answerDiv = document.getElementById("answer-" + id);
+        answerDiv.style.display = (answerDiv.style.display === "none") ? "block" : "none";
+    }
+</script>
+
 {% endblock %}

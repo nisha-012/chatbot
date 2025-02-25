@@ -1,43 +1,27 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from .models import Question, Feedback
 from django.contrib import messages
-from .forms import AskQuestionForm
-from .models import QuestionAnswer, UserQuery
 
-def HomeView(request):
-    return render(request, 'chatapp/home.html')
+def home(request):
+    """Homepage with FAQ section."""
+    faq_questions = Question.objects.filter(show_in_faq=True).order_by("topic", "question_text")
+    return render(request, "chatapp/home.html", {"faq_questions": faq_questions})
 
-def ChatView(request):
-    questions = QuestionAnswer.objects.all()
-    question_id = request.GET.get('question_id')
-    answer = None
+def ask_query(request):
+    """Renders the Ask Your Query page."""
+    return render(request, "chatapp/ask_query.html")
 
-    if question_id:
-        question_obj = get_object_or_404(QuestionAnswer, id=question_id)
-        answer = question_obj.answer
+def feedback(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        feedback_text = request.POST.get('feedback_text')
+        rating = request.POST.get('rating')
 
-    return render(request, 'chatapp/chatbot.html', {'questions': questions, 'answer': answer})
+        Feedback.objects.create(email=email, feedback_text=feedback_text, rating=rating)
+        messages.success(request, 'Thank you for your feedback!')
+        return redirect('feedback') # Redirect to the same page to clear form
+    return render(request, 'chatapp/feedback.html')
 
-
-def AskQuestionView(request):
-    if request.method == "POST":
-        form = AskQuestionForm(request.POST)
-        if form.is_valid():
-            query = form.save()  # Saves the query in the database
-
-            subject = f"New Query from {query.name}"
-            message = f"Dear {query.name},\n\nYour query has been received.\n\n**Question:** {query.question}\n\nThe department will reply soon.\n\nBest,\nCUH Team"
-            
-            # Send email to user
-            send_mail(subject, message, 'noreply@cuh.ac.in', [query.email])
-
-            # Send email to department
-            dept_message = f"New query received from {query.name} ({query.email}):\n\n{query.question}\n\nPlease reply to {query.email}."
-            send_mail(f"New Query from {query.name}", dept_message, 'noreply@cuh.ac.in', [query.department])
-
-            messages.success(request, "Your query has been submitted successfully!")
-            return redirect("ask_question")
-    else:
-        form = AskQuestionForm()
-
-    return render(request, "chatapp/ask_question.html", {"form": form})
+def contact(request):
+    """Renders the Contact page."""
+    return render(request, "chatapp/contact.html")

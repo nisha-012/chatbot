@@ -1,39 +1,56 @@
 from django.contrib import admin
-from .models import QuestionAnswer, UserQuery
+from .models import Topic, Question, Department, UserQuery, Feedback
 
-@admin.register(QuestionAnswer)
-class QuestionAnswerAdmin(admin.ModelAdmin):
-    list_display = ("question", "important", "created_at", "updated_at")  # Show important status & timestamps
-    search_fields = ("question",)  # Enable search by question
-    list_filter = ("important", "created_at")  # Filter by importance & creation date
-    list_editable = ("important",)  # Allow quick edits for important field
-    readonly_fields = ("created_at", "updated_at")  # Prevent manual editing of timestamps
+# Inline for managing questions within the Topic page
+class QuestionInline(admin.TabularInline):
+    model = Question
+    extra = 1  # Allows adding questions directly in the Topic page
+
+@admin.register(Topic)
+class TopicAdmin(admin.ModelAdmin):
+    list_display = ("name",)  # Show topic name in list view
+    search_fields = ("name",)  # Allow searching topics
+    inlines = [QuestionInline]  # Show related questions inline
+
+@admin.register(Question)
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = ("question_text", "topic", "show_in_faq", "pdf_link")  # Show FAQ status
+    list_filter = ("topic", "show_in_faq")  # Filter by topic & FAQ inclusion
+    search_fields = ("question_text", "answer_text")  # Search by question & answer
+    ordering = ("topic", "question_text")  # Sort by topic & question text
+    list_editable = ("show_in_faq",)  # Enable quick editing of FAQ status
+    readonly_fields = ("pdf_link",)  # Prevent accidental changes to PDF link
+
     fieldsets = (
-        ("Question Details", {
-            "fields": ("question", "answer", "important"),
-        }),
-        ("Timestamps", {
-            "fields": ("created_at", "updated_at"),
-            "classes": ("collapse",),  # Collapsible section for cleaner UI
-        }),
+        ("Question Details", {"fields": ("topic", "question_text", "answer_text")}),
+        ("Additional Info", {"fields": ("show_in_faq", "pdf_link")}),
     )
+
+
+@admin.register(Department)
+class DepartmentAdmin(admin.ModelAdmin):
+    list_display = ("name", "email")  # Show department name & email
+    search_fields = ("name", "email")  # Allow search
+    ordering = ("name",)  # Sort alphabetically
 
 @admin.register(UserQuery)
 class UserQueryAdmin(admin.ModelAdmin):
-    list_display = ("name", "email", "department", "timestamp")  # Show essential details
-    search_fields = ("name", "email", "question")  # Enable search
-    list_filter = ("department", "timestamp")  # Filter by department & time
-    date_hierarchy = "timestamp"  # Adds a date-based navigation filter
-    readonly_fields = ("timestamp",)  # Prevent manual timestamp edits
-    fieldsets = (
-        ("User Information", {
-            "fields": ("name", "email", "department"),
-        }),
-        ("Query Details", {
-            "fields": ("question",),
-        }),
-        ("Timestamp", {
-            "fields": ("timestamp",),
-            "classes": ("collapse",),  # Collapsible section for better UI
-        }),
-    )
+    list_display = ("department", "email", "submitted_at", "response_sent")  # Key details
+    list_filter = ("department", "response_sent")  # Filter by department & status
+    search_fields = ("email", "question")  # Allow search by email or question
+    ordering = ("-submitted_at",)  # Show latest queries first
+    readonly_fields = ("submitted_at",)  # Prevent manual editing of timestamp
+    
+@admin.register(Feedback)
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ("email", "submitted_at", "rating", "truncated_feedback")  # Added rating and truncated feedback
+    search_fields = ("email", "feedback_text")
+    ordering = ("-submitted_at",)
+    readonly_fields = ("submitted_at", "rating") #Added rating to readonly field.
+    list_filter = ("submitted_at", "rating") #Added rating filter.
+
+    def truncated_feedback(self, obj):
+        """Show a shortened version of the feedback in the list view."""
+        return obj.feedback_text[:50] + "..." if len(obj.feedback_text) > 50 else obj.feedback_text
+
+    truncated_feedback.short_description = "Feedback Preview"

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-md-8">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-body p-5">
+                <h2 class="text-center fw-bold mb-3 text-primary">Ask Your Question</h2>
+                <p class="text-center text-muted">Your query will be forwarded to the respective department.</p>
+
+                <form method="post" class="mt-4">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Name</label>
+                        {{ form.name }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Email</label>
+                        {{ form.email }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Department</label>
+                        {{ form.department }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Your Question</label>
+                        {{ form.question }}
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg rounded-3 shadow-sm">
+                            Submit <i class="bi bi-send ms-1"></i>
+                        </button>
+                    </div>
+                </form>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success mt-3 rounded-3 shadow-sm">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,52 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="col-md-8">
-        <div class="card shadow-lg border-0 rounded-4">
-            <div class="card-body p-5">
-                <h2 class="text-center fw-bold mb-3 text-primary">Ask Your Question</h2>
-                <p class="text-center text-muted">Your query will be forwarded to the respective department.</p>
-
-                <form method="post" class="mt-4">
+    <section class="ask-query-page">
+        <div class="ask-query-container">
+            <div class="ask-query-header">
+                <h2>Ask Your Question</h2>
+                <p>Your query will be forwarded to the respective department.</p>
+            </div>
+            <div class="ask-query-form-wrapper">
+                <form method="post">
                     {% csrf_token %}
-                    
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Name</label>
-                        {{ form.name }}
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" id="name" required>
                     </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Email</label>
-                        {{ form.email }}
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" required>
                     </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Department</label>
-                        {{ form.department }}
+                    <div class="form-group">
+                        <label for="question">Your Question:</label>
+                        <textarea name="question" id="question" rows="5" required></textarea>
                     </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Your Question</label>
-                        {{ form.question }}
-                    </div>
-
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg rounded-3 shadow-sm">
-                            Submit <i class="bi bi-send ms-1"></i>
-                        </button>
-                    </div>
+                    <button type="submit">Submit Query</button>
                 </form>
-
                 {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert alert-success mt-3 rounded-3 shadow-sm">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
                 {% endif %}
             </div>
         </div>
-    </div>
-</div>
+    </section>
 {% endblock %}

@@ -4,38 +4,44 @@
 {% block title %}Feedback{% endblock %}
 
 {% block content %}
-    <div class="feedback-container">
-        <h2>Provide Your Feedback</h2>
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email" required>
+    <section class="feedback-page">
+        <div class="feedback-container">
+            <div class="feedback-header">
+                <h2>Help Us Improve Your Experience</h2>
+                <p>Your feedback helps us make the CUH Chatbot even better.</p>
+                <p>Please take a moment to share your thoughts and suggestions.</p>
             </div>
-            <div class="form-group">
-                <label for="feedback_text">Feedback:</label>
-                <textarea name="feedback_text" id="feedback_text" rows="5" required></textarea>
+            <div class="feedback-form-wrapper">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group rating-group">  <label>Rating:</label>
+                        <div class="rating">
+                            <span class="star" data-rating="1">&#9733;</span>
+                            <span class="star" data-rating="2">&#9733;</span>
+                            <span class="star" data-rating="3">&#9733;</span>
+                            <span class="star" data-rating="4">&#9733;</span>
+                            <span class="star" data-rating="5">&#9733;</span>
+                            <input type="hidden" name="rating" id="rating" value="0" required> </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback_text">Feedback:</label>
+                        <textarea name="feedback_text" id="feedback_text" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" required>
+                    </div>
+                    <button type="submit">Submit Feedback</button>
+                </form>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             </div>
-            <div class="form-group">
-                <label>Rating:</label>
-                <div class="rating">
-                    <span class="star" data-rating="1">&#9733;</span>
-                    <span class="star" data-rating="2">&#9733;</span>
-                    <span class="star" data-rating="3">&#9733;</span>
-                    <span class="star" data-rating="4">&#9733;</span>
-                    <span class="star" data-rating="5">&#9733;</span>
-                    <input type="hidden" name="rating" id="rating" value="0">
-                </div>
-            </div>
-            <button type="submit">Submit Feedback</button>
-        </form>
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </div>
+        </div>
+    </section>
     <script src="{% static 'js/rating.js' %}"></script>
 {% endblock %}

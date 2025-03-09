@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Topic, Question, Department, UserQuery, Feedback
+from .models import Topic, Question, UserQuery, Feedback
 
 # Inline for managing questions within the Topic page
 class QuestionInline(admin.TabularInline):
@@ -26,17 +26,10 @@ class QuestionAdmin(admin.ModelAdmin):
         ("Additional Info", {"fields": ("show_in_faq", "pdf_link")}),
     )
 
-
-@admin.register(Department)
-class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ("name", "email")  # Show department name & email
-    search_fields = ("name", "email")  # Allow search
-    ordering = ("name",)  # Sort alphabetically
-
 @admin.register(UserQuery)
 class UserQueryAdmin(admin.ModelAdmin):
-    list_display = ("department", "email", "submitted_at", "response_sent")  # Key details
-    list_filter = ("department", "response_sent")  # Filter by department & status
+    list_display = ("email", "submitted_at", "response_sent")  # Key details
+    list_filter = ("response_sent",)  # Filter by department & status
     search_fields = ("email", "question")  # Allow search by email or question
     ordering = ("-submitted_at",)  # Show latest queries first
     readonly_fields = ("submitted_at",)  # Prevent manual editing of timestamp

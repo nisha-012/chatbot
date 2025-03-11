@@ -20,10 +20,9 @@ class UserQuery(models.Model):
     email = models.EmailField()
     question = models.TextField()
     submitted_at = models.DateTimeField(auto_now_add=True)
-    response_sent = models.BooleanField(default=False)  # Track if email was sent
 
     def __str__(self):
-        return f"{self.department.name} - {self.email}"
+        return f"{self.email}"
 
 class Feedback(models.Model):
     email = models.EmailField()

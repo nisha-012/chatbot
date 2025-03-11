@@ -85,11 +85,16 @@
         <div class="faq-list">
             {% for question in faq_questions %}
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleAnswer({{ question.id }})">{{ question.question_text }}</button>
+                    <button class="faq-question" onclick="toggleAnswer({{ question.id }})">
+                        {{ question.question_text }}
+                    </button>
                     <div class="faq-answer" id="answer-{{ question.id }}" style="display: none;">
                         <p>{{ question.answer_text }}</p>
+
                         {% if question.pdf_link %}
-                            <a href="{{ question.pdf_link }}" target="_blank">View PDF</a>
+                            <a href="{{ question.pdf_link }}" target="_blank" class="pdf-link">
+                                <i class="fas fa-file-pdf"></i> View PDF
+                            </a>
                         {% endif %}
                     </div>
                 </div>
@@ -98,6 +103,7 @@
             {% endfor %}
         </div>
     </section>
+
 
 
     <script>
@@ -116,50 +122,3 @@
     </script>
 
 {% endblock %}
-
-
-{% comment %} {% extends 'base.html' %}
-{% load static %}
-
-{% block title %}Home - CUH Chatbot{% endblock %}
-
-{% block content %}
-<div class="container">
-    
-    <!-- Introduction Section -->
-    <section class="intro">
-        <h1>Welcome to CUH Chatbot</h1>
-        <p>Explore the CUH Chatbot for instant answers to your queries. Navigate through predefined topics, ask questions, and get relevant PDF resources.</p>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq">
-        <h2>Frequently Asked Questions</h2>
-        <div class="faq-list">
-            {% for question in faq_questions %}
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleAnswer({{ question.id }})">{{ question.question_text }}</button>
-                    <div class="faq-answer" id="answer-{{ question.id }}" style="display: none;">
-                        <p>{{ question.answer_text }}</p>
-                        {% if question.pdf_link %}
-                            <a href="{{ question.pdf_link }}" target="_blank">View PDF</a>
-                        {% endif %}
-                    </div>
-                </div>
-            {% empty %}
-                <p>No FAQs available at the moment.</p>
-            {% endfor %}
-        </div>
-    </section>
-
-</div>
-
-<script>
-    function toggleAnswer(id) {
-        var answerDiv = document.getElementById("answer-" + id);
-        answerDiv.style.display = (answerDiv.style.display === "none") ? "block" : "none";
-    }
-</script>
-
-{% endblock %} {% endcomment %}
-

@@ -19,7 +19,6 @@ class QuestionAdmin(admin.ModelAdmin):
     search_fields = ("question_text", "answer_text")  # Search by question & answer
     ordering = ("topic", "question_text")  # Sort by topic & question text
     list_editable = ("show_in_faq",)  # Enable quick editing of FAQ status
-    readonly_fields = ("pdf_link",)  # Prevent accidental changes to PDF link
 
     fieldsets = (
         ("Question Details", {"fields": ("topic", "question_text", "answer_text")}),
@@ -28,8 +27,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 @admin.register(UserQuery)
 class UserQueryAdmin(admin.ModelAdmin):
-    list_display = ("email", "submitted_at", "response_sent")  # Key details
-    list_filter = ("response_sent",)  # Filter by department & status
+    list_display = ("email", "submitted_at")  # Key details
     search_fields = ("email", "question")  # Allow search by email or question
     ordering = ("-submitted_at",)  # Show latest queries first
     readonly_fields = ("submitted_at",)  # Prevent manual editing of timestamp

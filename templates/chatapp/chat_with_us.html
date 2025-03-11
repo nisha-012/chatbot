@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Chat With Us - CUH Chatbot{% endblock %}
+
+{% block content %}
+<section class="chat-container">
+    <!-- Header -->
+    <div class="chat-header">
+        <h2>Chat with CUH Chatbot</h2>
+    </div>
+
+    <!-- Topic Selection -->
+    <div class="topic-selection">
+        <h4>Select a Topic</h4>
+        <div class="topics-list">
+            {% for topic in topics %}
+                <button class="topic-btn" onclick="selectTopic('{{ topic.id }}', '{{ topic.name }}')">{{ topic.name }}</button>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Chat Display -->
+    <div class="chat-box" id="chat-box">
+        <p id="selected-topic" class="selected-topic" style="display: none;"></p> 
+        <button id="choose-question-btn" class="btn-choose-question" style="display: none;" onclick="openQuestionModal()">Choose a Question</button>
+    </div>
+
+    <!-- Modal for Questions -->
+    <div id="questionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Select a Question</h3>
+            <!-- Search Bar -->
+            <input type="text" id="searchQuestion" placeholder="Search questions..." class="search-bar">
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Loading questions...</p>
+            </div>
+            <!-- Questions List -->
+            <div id="questions-list"></div>
+        </div>
+    </div>
+</section>
+
+<!-- JavaScript -->
+<script>
+    // Pass static URLs to JavaScript
+    const staticUrls = {
+        userAvatar: "{% static 'images/user-avatar.png' %}",
+        botAvatar: "{% static 'images/bot-avatar.png' %}"
+    };
+</script>
+<script src="{% static 'js/chat.js' %}"></script>
+{% endblock %}

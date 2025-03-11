@@ -288,3 +288,30 @@
 .faq-answer a:hover {
    color: #002f6c;
 }
+
+/* PDF Link */
+.pdf-link {
+   display: inline-flex;
+   align-items: center;
+   font-size: 16px;
+   color: #d32f2f; /* Red color for the text */
+   text-decoration: none;
+   font-weight: bold;
+   margin-top: 10px;
+   transition: color 0.3s ease-in-out;
+}
+
+/* Red PDF Icon */
+.pdf-link i {
+   font-size: 20px;
+   margin-right: 8px;
+   color: #d32f2f; /* Make icon red */
+}
+
+.pdf-link:hover {
+   color: #b71c1c; /* Darker red on hover */
+}
+
+.pdf-link:hover i {
+   color: #b71c1c; /* Darker red for icon on hover */
+}

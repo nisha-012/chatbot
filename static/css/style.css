@@ -26,6 +26,9 @@ h1, h2, h3 {
 .navbar {
    background-color: #002147;
    padding: 15px 0;
+   position: sticky;
+   top: 0;
+   z-index: 1000;
 }
 
 .navbar .container {
@@ -47,6 +50,8 @@ h1, h2, h3 {
 .nav-links {
    list-style: none;
    display: flex;
+   align-items: center;
+   transition: transform 0.3s ease-in-out;
 }
 
 .nav-links li {
@@ -57,6 +62,66 @@ h1, h2, h3 {
    color: #fff;
    text-decoration: none;
    font-weight: bold;
+   transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+   color: #ffcc80; /* Light orange on hover */
+}
+
+/* Hamburger Menu */
+.hamburger {
+   display: none;
+   flex-direction: column;
+   cursor: pointer;
+}
+
+.hamburger span {
+   width: 25px;
+   height: 3px;
+   background-color: #fff;
+   margin: 4px 0;
+   transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Responsive Styles for navbar*/
+@media (max-width: 768px) {
+   .hamburger {
+       display: flex;
+   }
+
+   .nav-links {
+       position: absolute;
+       top: 70px; /* Adjust based on navbar height */
+       right: 0;
+       background-color: #002147;
+       flex-direction: column;
+       width: 100%;
+       align-items: center;
+       transform: translateX(100%);
+       transition: transform 0.3s ease-in-out;
+   }
+
+   .nav-links li {
+       margin: 15px 0;
+   }
+
+   .nav-links.active {
+       transform: translateX(0);
+   }
+
+   /* Hamburger Animation */
+   .hamburger.active span:nth-child(1) {
+       transform: rotate(45deg) translate(5px, 5px);
+   }
+
+   .hamburger.active span:nth-child(2) {
+       opacity: 0;
+   }
+
+   .hamburger.active span:nth-child(3) {
+       transform: rotate(-45deg) translate(5px, -5px);
+   }
 }
 
 /* Footer */

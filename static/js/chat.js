@@ -87,6 +87,10 @@ function selectQuestion(question, answer, pdfLink) {
         </div>
     `;
 
+    console.log(answer);
+    // Replace `\n` with `<br>` to ensure proper line breaks in HTML
+    let formattedAnswer = answer.replace(/\n/g, "<br>");
+    console.log(formattedAnswer);
     // Add bot answer (right side)
     let answerHTML = `
         <div class="chat-message bot-message" style="animation: slideInUp 0.5s ease;">
@@ -99,7 +103,6 @@ function selectQuestion(question, answer, pdfLink) {
     // If there's a PDF link, add it below the answer
     if (pdfLink) {
         answerHTML += `
-            <br>
             <a href="${pdfLink}" target="_blank" class="pdf-link">
                 <i class="fas fa-file-pdf"></i> View PDF
             </a>

@@ -18,7 +18,16 @@
     <nav class="navbar">
         <div class="container">
             <a href="{% url 'home' %}" class="logo">CUH Chatbot</a>
-            <ul class="nav-links">
+            
+            <!-- Hamburger Menu Icon -->
+            <div class="hamburger" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+    
+            <!-- Nav Links -->
+            <ul class="nav-links" id="navLinks">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'chat' %}">Chat With Us</a></li>
                 <li><a href="{% url 'ask_query' %}">Ask a Query</a></li>
@@ -43,5 +52,15 @@
         </div>
     </footer>
 
+    <script>
+        function toggleNav() {
+            const navLinks = document.getElementById("navLinks");
+            const hamburger = document.querySelector(".hamburger");
+        
+            // Toggle the "active" class on nav-links and hamburger
+            navLinks.classList.toggle("active");
+            hamburger.classList.toggle("active");
+        }
+    </script>
 </body>
 </html>

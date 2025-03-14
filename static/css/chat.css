@@ -103,7 +103,7 @@
 
 /* Chat Messages */
 .chat-message {
-    padding: 12px 18px;
+    padding: 2px 18px 5px 18px;
     margin: 8px 0;
     border-radius: 12px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -116,6 +116,8 @@
     display: flex;
     align-items: flex-start;
     gap: 10px;
+    justify-content: center;
+    padding-top: 10px;
 }
 
 .avatar {
@@ -129,6 +131,11 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+.message-text > p{
+    white-space: pre-wrap;
+    margin-top: 0;
 }
 
 .timestamp {
@@ -160,7 +167,7 @@
     transform: translate(-50%, -50%);
     background: white;
     padding: 30px;
-    border-radius: 16px;
+    border-radius: 20px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
     width: 80%;
     max-width: 600px;
@@ -177,6 +184,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: -1;
+    border-radius: 20px;
 }
 
 .modal-content {
@@ -200,6 +208,78 @@
 .close:hover {
     background-color: #ccc;
 }
+
+/* Modal Heading */
+.modal-content h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* Add an underline effect */
+.modal-content h3::after {
+    content: "";
+    display: block;
+    width: 80%;
+    height: 4px;
+    background: #000000;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+}
+
+/* Search Bar Container */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Search Input */
+.search-bar {
+    width: 100%;
+    padding: 12px 12px 12px 40px;  /* Left padding for icon */
+    font-size: 1rem;
+    border: 2px solid #004aad;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    text-align: left;
+}
+
+/* Focus Effect */
+.search-bar:focus {
+    border-color: #002a6b;
+    box-shadow: 0 0 8px rgba(0, 74, 173, 0.3);
+}
+
+/* Placeholder Text */
+.search-bar::placeholder {
+    color: #7a7a7a;
+    font-style: italic;
+}
+
+/* Search Icon Styling */
+.search-container i {
+    position: absolute;
+    left: 12px; /* Adjust icon position */
+    font-size: 1.2rem;
+    color: #004aad;
+    top: 50%;
+    transform: translateY(-50%); /* Perfectly center icon */
+}
+
 
 .question-btn {
     display: block;

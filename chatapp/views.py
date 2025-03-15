@@ -4,6 +4,7 @@ from .models import Topic, Question, Feedback, UserQuery
 from django.contrib import messages
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 def create_admin_user(request):
     if not User.objects.filter(username="admin").exists():

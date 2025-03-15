@@ -1,9 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from .models import Topic, Question, Feedback, UserQuery
 from django.contrib import messages
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+
+def create_admin_user(request):
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser("admin", "admin@example.com", "admin123")
+        return HttpResponse("Superuser created! Username: admin, Password: admin123")
+    else:
+        return HttpResponse("Superuser already exists.")
 
 def home(request):
     """Homepage with FAQ section."""

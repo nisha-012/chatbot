@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path("create-admin/", views.create_admin_user),  # Temporary URL for creating superuser
     path("", views.home, name="home"),  # Homepage with FAQ section
     path("chat/", views.chat_with_us, name="chat"),
     path('get-questions/<int:topic_id>/', views.get_questions, name='get_questions'),

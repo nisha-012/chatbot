@@ -14,7 +14,7 @@
 
     <!-- Topic Selection -->
     <div class="topic-selection">
-      <h4>Select a Topic</h4>
+      <h3>Select a Topic</h3>
       <div class="topics-list">
         {% for topic in topics %}
           <button class="topic-btn" onclick="selectTopic('{{ topic.id }}', '{{ topic.name }}')">{{ topic.name }}</button>
@@ -61,5 +61,5 @@
       botAvatar: "{% static 'images/bot-avatar.png' %}"
     }
   </script>
-  <script src="{% static 'js/chat.js' %}"></script>
+  <script src="{% static 'js/chat_faq.js' %}"></script>
 {% endblock %}

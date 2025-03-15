@@ -29,30 +29,37 @@
     animation: fadeIn 1s ease-in-out;
 }
 
+/* Topic List: Flexbox for Centering & Wrapping */
 .topics-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
     margin-top: 15px;
+    padding: 10px;
 }
 
+/* Topic Button: Responsive Sizing & Hover Effects */
 .topic-btn {
     background: #e0f2fe; /* Light blue background */
     color: #004aad; /* Dark blue text */
-    padding: 12px 25px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s ease;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     font-weight: 600;
     font-size: 1rem;
+    text-align: center;
+    min-width: 150px; /* Ensure buttons are a reasonable size */
 }
 
+/* Hover Effect */
 .topic-btn:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+    background: #d0e7fc; /* Slightly darker blue on hover */
 }
 
 /* Chat Box */
@@ -61,7 +68,7 @@
     padding: 25px;
     margin-top: 30px;
     border-radius: 16px;
-    min-height: 300px;
+    min-height: 400px;
     background: #f9f9f9; /* Light gray background */
     text-align: left;
     display: flex;
@@ -339,4 +346,126 @@
 @keyframes slideInUp {
     from { transform: translateY(20px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
+}
+
+/* ✅ Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    .chat-container {
+        padding: 20px 15px;
+        margin: 20px auto;
+    }
+
+    .chat-header {
+        font-size: 1.8rem;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .topics-list {
+        grid-template-columns: repeat(2, 1fr); /* 2 buttons per row */
+        gap: 12px;
+    }
+
+    .topic-btn {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    .chat-box {
+        min-height: 350px;
+        max-height: 350px;
+    }
+
+    .btn-choose-question {
+        font-size: 0.95rem;
+        padding: 10px 18px;
+    }
+
+    .modal {
+        width: 85%;
+        padding: 20px;
+    }
+
+    .search-bar {
+        font-size: 1rem;
+        padding: 10px 12px 10px 35px;
+    }
+
+    .pdf-link {
+        font-size: 14px;
+    }
+
+    .message-text > p {
+        font-size: 0.95rem; /* Reduce text size slightly for better spacing */
+    }
+}
+
+/* ✅ Mobile Screens (max-width: 480px) */
+@media (max-width: 480px) {
+    .chat-container {
+        padding: 30px 0px;
+        margin: 0;
+    }
+
+    .chat-header {
+        padding: 15px;
+        font-size: 1.5rem;
+        text-align: center;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .topics-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 buttons per row */
+        gap: 8px;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .topic-btn {
+        width: 100%;
+        font-size: 1rem;
+        padding: 12px;
+        text-align: center;
+        border-radius: 8px;
+    }
+
+    .chat-box {
+        min-height: 300px;
+        max-height: 300px;
+        padding: 15px;
+    }
+
+    .btn-choose-question {
+        width: 100%;
+        font-size: 1rem;
+        padding: 12px 15px;
+    }
+
+    .chat-message {
+        max-width: 90%;
+    }
+    .modal {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .modal-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .search-bar {
+        font-size: 0.9rem;
+        padding: 8px 12px 8px 35px;
+    }
+
+    .pdf-link {
+        font-size: 13px;
+    }
+
+    .message-text > p {
+        font-size: 0.9rem;
+    }
 }

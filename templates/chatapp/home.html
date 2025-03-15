@@ -85,28 +85,23 @@
         <div class="faq-list">
             {% for question in faq_questions %}
                 <div class="faq-item">
-                    <button class="faq-question" onclick="toggleAnswer({{ question.id }})">
+                    <button class="faq-question" onclick="toggleAnswer(this)" 
+                            data-answer="{{ question.answer_text }}" 
+                            data-pdf="{{ question.pdf_link }}">
                         {{ question.question_text }}
                     </button>
-                    <div class="faq-answer" id="answer-{{ question.id }}" style="display: none;">
-                        <p>{{ question.answer_text }}</p>
-
-                        {% if question.pdf_link %}
-                            <a href="{{ question.pdf_link }}" target="_blank" class="pdf-link">
-                                <i class="fas fa-file-pdf"></i> View PDF
-                            </a>
-                        {% endif %}
-                    </div>
+                    <div class="faq-answer" style="display: none;"></div> <!-- Answer will be inserted here -->
                 </div>
             {% empty %}
                 <p>No FAQs available at the moment.</p>
             {% endfor %}
         </div>
     </section>
+    
 
 
-
-    <script>
+    <script src="{% static 'js/chat_faq.js' %}"></script>
+    {% comment %} <script>
         function toggleAnswer(id) {
             var answerDiv = document.getElementById("answer-" + id);
             var questionBtn = document.querySelector("#answer-" + id).parentElement.querySelector('.faq-question');
@@ -119,6 +114,6 @@
                 questionBtn.classList.remove("active");
             }
         }
-    </script>
+    </script> {% endcomment %}
 
 {% endblock %}

@@ -2,7 +2,7 @@
 .feedback-page,
 .ask-query-page {
     background-color: #f9f9f9;
-    padding: 60px 20px;
+    padding: 40px 15px; /* Adjusted padding */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,8 +11,9 @@
 
 .feedback-container,
 .ask-query-container {
-    width: 700px;
-    padding: 40px;
+    width: 90%; /* Adjusted width */
+    max-width: 600px; /* Maximum width */
+    padding: 30px; /* Adjusted padding */
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
@@ -21,47 +22,49 @@
 .feedback-header,
 .ask-query-header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px; /* Adjusted margin */
 }
 
 .feedback-header h2,
 .ask-query-header h2 {
     color: #004aad;
-    font-size: 2.2rem;
-    margin-bottom: 10px;
+    font-size: 2rem; /* Adjusted font size */
+    margin-bottom: 8px; /* Adjusted margin */
 }
 
 .feedback-header p,
 .ask-query-header p {
     color: #555;
-    line-height: 1.7;
+    line-height: 1.6; /* Adjusted line height */
+    font-size: 0.95rem; /* adjusted font size */
 }
 
 .feedback-form-wrapper,
 .ask-query-form-wrapper {
-    margin-top: 30px;
+    margin-top: 25px; /* Adjusted margin */
 }
 
 .form-group {
-    margin-bottom: 25px;
+    margin-bottom: 20px; /* Adjusted margin */
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px; /* Adjusted margin */
     font-weight: 600;
     color: #333;
+    font-size: 0.95rem; /* adjusted font size */
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 12px 15px;
+    padding: 10px 12px; /* Adjusted padding */
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     box-sizing: border-box;
-    font-size: 1rem;
+    font-size: 0.95rem; /* adjusted font size */
     transition: border-color 0.3s ease;
 }
 
@@ -76,13 +79,13 @@
 .ask-query-container button {
     background-color: #004aad;
     color: #fff;
-    padding: 15px 30px;
+    padding: 12px 25px; /* Adjusted padding */
     border: none;
     border-radius: 8px;
     cursor: pointer;
     display: block;
-    margin: 20px auto;
-    font-size: 1.1rem;
+    margin: 15px auto; /* Adjusted margin */
+    font-size: 1rem; /* Adjusted font size */
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -98,17 +101,16 @@
 /* Flash Messages Styling */
 .messages {
     list-style: none;
-    padding: 0;
-    margin: 20px auto;
-    max-width: 600px;
-    text-align: center;
+    padding: 15px; /* Adjusted padding */
+    margin: 15px auto; /* Adjusted margin */
+    border-radius: 8px;
+    font-size: 0.9rem; /* Adjusted font size */
 }
 
 .messages li {
-    padding: 12px 15px;
-    margin-bottom: 10px;
+    padding: 10px 12px; /* Adjusted padding */
+    margin-bottom: 8px; /* Adjusted margin */
     border-radius: 5px;
-    font-size: 1rem;
     font-weight: 500;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.5s ease-in-out;
@@ -116,30 +118,30 @@
 
 /* Success Message */
 .messages .success {
-    background-color: #d4edda; /* Light Green */
-    color: #155724; /* Dark Green */
-    border-left: 5px solid #28a745; /* Green Left Border */
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
 }
 
 /* Error Message */
 .messages .error {
-    background-color: #f8d7da; /* Light Red */
-    color: #721c24; /* Dark Red */
-    border-left: 5px solid #dc3545; /* Red Left Border */
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f1c5c8;
 }
 
 /* Info Message */
 .messages .info {
-    background-color: #d1ecf1; /* Light Blue */
-    color: #0c5460; /* Dark Blue */
-    border-left: 5px solid #17a2b8; /* Blue Left Border */
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bce8f1;
 }
 
 /* Warning Message */
 .messages .warning {
-    background-color: #fff3cd; /* Light Yellow */
-    color: #856404; /* Dark Yellow */
-    border-left: 5px solid #ffc107; /* Yellow Left Border */
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
 }
 
 /* Fade-in Animation */
@@ -161,9 +163,10 @@
 
 .rating-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px; /* Adjusted margin */
     font-weight: 600;
     color: #333;
+    font-size: 0.95rem; /* adjusted font size */
 }
 
 .rating {
@@ -171,7 +174,7 @@
 }
 
 .star {
-    font-size: 1.8rem;
+    font-size: 1.6rem; /* Adjusted font size */
     color: #ccc;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -181,22 +184,10 @@
     color: #ffc107;
 }
 
-.messages {
-   list-style: none;
-   padding: 20px;
-   margin-top: 20px;
-   border-radius: 8px;
-}
-
-.messages li {
-   padding: 15px;
-   border-radius: 8px;
-   margin-bottom: 10px;
-   font-size: 1rem;
-}
-
-.messages .success {
-   background-color: #d4edda;
-   color: #155724;
-   border: 1px solid #c3e6cb;
+/* Responsive Styles */
+@media (max-width: 480px) {
+    .feedback-container,
+    .ask-query-container {
+        padding: 20px;
+    }
 }

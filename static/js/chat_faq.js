@@ -1,3 +1,49 @@
+
+// Function for displaying url correctly
+function linkifyUrls(text) {
+    const urlPattern = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlPattern, function (url) {
+        let displayUrl = url.length > 30 ? url.substring(0, 30) + "..." : url;
+        return `<a href="${url}" target="_blank" title="${url}">${displayUrl}</a>`;
+    });
+}
+
+//! FAQ Section
+function toggleAnswer(buttonElement) {
+    let answerContainer = buttonElement.nextElementSibling;
+    let rawAnswerText = buttonElement.getAttribute("data-answer");
+    let pdfLink = buttonElement.getAttribute("data-pdf");
+
+    // If the answer is already visible, hide it
+    if (answerContainer.innerHTML) {
+        answerContainer.innerHTML = "";
+        answerContainer.style.display = "none";
+        buttonElement.classList.remove("active");
+        return;
+    }
+
+    // Convert URLs in answer text to clickable links
+    let formattedAnswer = linkifyUrls(rawAnswerText);
+
+    // Construct answer HTML
+    let answerHtml = `<p>${formattedAnswer}</p>`;
+
+    // ✅ Only add PDF link if it actually exists (not empty/null)
+    if (pdfLink && pdfLink.trim() !== "None") {
+        answerHtml += `<a href="${pdfLink}" target="_blank" class="pdf-link">
+                          <i class="fas fa-file-pdf"></i> View PDF
+                       </a>`;
+    }
+
+    // Insert content and show answer
+    answerContainer.innerHTML = answerHtml;
+    answerContainer.style.display = "block";
+    buttonElement.classList.add("active");
+}
+
+
+
+//! Chat With Us section
 let selectedTopicId = null;
 
 // Select Topic and Show Question Button
@@ -87,17 +133,16 @@ function selectQuestion(question, answer, pdfLink) {
         </div>
     `;
 
-    console.log(answer);
-    // Replace `\n` with `<br>` to ensure proper line breaks in HTML
-    let formattedAnswer = answer.replace(/\n/g, "<br>");
-    console.log(formattedAnswer);
+     // Convert URLs in answerText to links
+     let formattedAnswer = linkifyUrls(answer);
+
     // Add bot answer (right side)
     let answerHTML = `
         <div class="chat-message bot-message" style="animation: slideInUp 0.5s ease;">
             <div class="message-content">
                 <img src="${staticUrls.botAvatar}" alt="Bot Avatar" class="avatar">
                 <div class="message-text">
-                    <p>${answer}</p>
+                    <p>${formattedAnswer}</p>
     `;
     
     // If there's a PDF link, add it below the answer

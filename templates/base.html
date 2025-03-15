@@ -1,67 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}CUH Chatbot{% endblock %}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
+        CUH Chatbot
+      {% endblock %}
+    </title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-    <link rel="stylesheet" href="{% static 'css/form.css' %}">
-    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
-    <link rel="stylesheet" href="{% static 'css/chat_media.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
-</head>
-<body>
-
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/form.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="icon" type="image/png" href="{% static 'images/logoicon.png' %}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="container">
-            <a href="{% url 'home' %}" class="logo">CUH Chatbot</a>
-            
-            <!-- Hamburger Menu Icon -->
-            <div class="hamburger" onclick="toggleNav()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-    
-            <!-- Nav Links -->
-            <ul class="nav-links" id="navLinks">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'chat' %}">Chat With Us</a></li>
-                <li><a href="{% url 'ask_query' %}">Ask a Query</a></li>
-                <li><a href="{% url 'feedback' %}">Feedback</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
-            </ul>
+      <div class="container">
+
+        <!-- Logo -->
+        <a href="{% url 'home' %}" class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="CUH Logo" />
+        </a>
+
+        <!-- Hamburger Menu Icon -->
+        <div class="hamburger" onclick="toggleNav()">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
+
+        <!-- Nav Links -->
+        <ul class="nav-links" id="navLinks">
+          <li>
+            <a href="{% url 'home' %}" class="nav-item">Home</a>
+          </li>
+          <li>
+            <a href="{% url 'chat' %}" class="nav-item">Chat With Us</a>
+          </li>
+          <li>
+            <a href="{% url 'ask_query' %}" class="nav-item">Ask a Query</a>
+          </li>
+          <li>
+            <a href="{% url 'feedback' %}" class="nav-item">Feedback</a>
+          </li>
+          <li>
+            <a href="{% url 'contact' %}" class="nav-item">Contact</a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <main>
-        {% block content %}{% endblock %}
+      {% block content %}
+
+      {% endblock %}
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 CUH Chatbot. All rights reserved.</p>
-            <ul class="footer-links">
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <!-- Quick Links Section -->
+          <div class="footer-section footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li>
+                <a href="/"><i class="fas fa-chevron-right"></i> Home</a>
+              </li>
+              <li>
+                <a href="/about"><i class="fas fa-chevron-right"></i> About Us</a>
+              </li>
+              <li>
+                <a href="/chat"><i class="fas fa-chevron-right"></i> Chat With Us</a>
+              </li>
+              <li>
+                <a href="/feedback"><i class="fas fa-chevron-right"></i> Feedback</a>
+              </li>
+              <li>
+                <a href="/contact"><i class="fas fa-chevron-right"></i> Contact</a>
+              </li>
+              <li>
+                <a href="https://www.cuh.ac.in/" target="_blank"><i class="fas fa-external-link-alt"></i> CUH Official Site</a>
+              </li>
             </ul>
+          </div>
+
+          <!-- Social Links Section -->
+          <div class="footer-section social-links">
+            <h4>Connect With Us</h4>
+            <div class="social-icons">
+              <a href="https://www.facebook.com/centraluniversityofharyanaofficial/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://twitter.com/CUHofficial" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+              <a href="https://www.youtube.com/c/CentralUniversityofHaryana" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+              <a href="https://www.linkedin.com/school/central-university-of-haryana-mahendergarh/" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+
+          <!-- Contact Information Section -->
+          <div class="footer-section contact-info">
+            <h4>Contact Us</h4>
+            <ul>
+              <li>
+                <a href="https://www.google.com/maps?q=Central+University+of+Haryana,+Mahendergarh,+Haryana,+India" target="_blank"><i class="fas fa-map-marker-alt"></i> CUH, Mahendergarh, Haryana, India</a>
+              </li>
+              <li>
+                <a href="/contact" class="view-contact-page"><i class="fas fa-address-book"></i> View Contact Page</a>
+              </li>
+            </ul>
+          </div>
         </div>
+
+        <!-- Copyright Section -->
+        <div class="copyright">
+          <p>© 2025 Central University of Haryana Chatbot. All Rights Reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <script>
-        function toggleNav() {
-            const navLinks = document.getElementById("navLinks");
-            const hamburger = document.querySelector(".hamburger");
-        
-            // Toggle the "active" class on nav-links and hamburger
-            navLinks.classList.toggle("active");
-            hamburger.classList.toggle("active");
-        }
+      function toggleNav() {
+        const navLinks = document.getElementById('navLinks')
+        const hamburger = document.querySelector('.hamburger')
+      
+        // Toggle the "active" class on nav-links and hamburger
+        navLinks.classList.toggle('active')
+        hamburger.classList.toggle('active')
+      }
     </script>
-</body>
+  </body>
 </html>

@@ -1,38 +1,50 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}Contact Us - CUH Chatbot{% endblock %}
 
 {% block content %}
 <section class="contact-page">
     <div class="container">
-        <h2 class="text-center">Contact Us</h2>
-        <p class="text-center">Feel free to reach out to us for any queries or assistance.</p>
+        <h1>Contact Central University of Haryana</h1>
 
-        <div class="contact-info">
-            <div class="contact-card">
-                <i class="fas fa-map-marker-alt"></i>
-                <h3>University Address</h3>
-                <p>Central University of Haryana, Mahendergarh, Haryana, India</p>
+        <div class="contact-wrapper">
+            <!-- Contact Information -->
+            <div class="contact-section">
+                <h2><i class="fas fa-map-marker-alt"></i> University Address</h2>
+                <p><strong>Central University of Haryana</strong><br>
+                   Jant-Pali, Mahendergarh<br>
+                   Haryana Pin: 123031</p>
+
+                <h2><i class="fas fa-phone-alt"></i> Contact Numbers</h2>
+                <ul class="contact-list">
+                    <li><strong>Public Relations Officer:</strong> 01285-260137</li>
+                    <li><strong>Registrar Office:</strong> 01285-260202</li>
+                    <li><strong>Vice Chancellor Office:</strong> 01285-260201</li>
+                </ul>
+
+                <h2><i class="fas fa-envelope"></i> Email</h2>
+                <p><strong>Registrar:</strong> <a href="mailto:registrar@cuh.ac.in">registrar@cuh.ac.in</a></p>
             </div>
-            <div class="contact-card">
-                <i class="fas fa-envelope"></i>
-                <h3>Email</h3>
-                <p><a href="mailto:info@cuh.ac.in">info@cuh.ac.in</a></p>
-            </div>
-            <div class="contact-card">
-                <i class="fas fa-phone"></i>
-                <h3>Phone</h3>
-                <p>+91-XYZ-1234567</p>
+
+            <!-- Google Map Section -->
+            <div class="map-section">
+                <h2><i class="fas fa-map-marked-alt"></i> Find Us on Google Maps</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3511.2509203307304!2d76.13108807527824!3d28.35126257581952!2m3!1f0!2f0!3f0!2m3!1i1024!2i768!4f13.1!3m3!1m2!1s0x39129577ce587a0b%3A0xbdc1de187d4dccf9!2sCentral%20University%20of%20Haryana!5e0!3m2!1sen!2sin!4v1742221069735!5m2!1sen!2sin" loading="lazy"></iframe>
+                </div>
+                <a href="https://www.google.com/maps/place/Central+University+of+Haryana/@28.3512626,76.1310881,17z/data=!3m1!4b1!4m6!3m5!1s0x39129577ce587a0b:0xbdc1de187d4dccf9!8m2!3d28.3512626!4d76.133663!16s%2Fm%2F09v27s6?entry=ttu&g_ep=EgoyMDI1MDMxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D" target="_blank" class="btn-view-map">
+                    <i class="fas fa-external-link-alt"></i> View Larger Map
+                </a>
             </div>
         </div>
 
-        <!-- Google Map -->
-        <div class="map-container">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.2431234567!2d76.144578!3d28.441074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1234567890abcdef%3A0x1234567890abcdef!2sCentral%20University%20of%20Haryana!5e0!3m2!1sen!2sin!4v1234567890" 
-                width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
-            </iframe>
+        <!-- Senior Help Section -->
+        <div class="senior-help-section">
+            <h2><i class="fab fa-whatsapp"></i> Need Help from Seniors?</h2>
+            <p>Join our WhatsApp group for guidance:</p>
+            <a href="YOUR_WHATSAPP_GROUP_LINK" target="_blank" class="whatsapp-link">
+                <i class="fab fa-whatsapp"></i> Join WhatsApp Group
+            </a>
         </div>
     </div>
 </section>
